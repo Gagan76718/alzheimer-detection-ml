@@ -1,0 +1,7 @@
+flask
+numpy
+opencv-python
+scikit-learn
+matplotlib
+joblib
+pillow

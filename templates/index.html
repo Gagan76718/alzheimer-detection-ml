@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alzheimer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: linear-gradient(135deg, #5f6dfd, #9b59b6);
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #00c6ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+
+    <!-- PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div><b>🧠 Alzheimer Detection</b></div>
+
+        <div>
+            Logged in as: <b>{{ session['user'] }}</b>
+            <a href="/history">History</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container" id="report">
+
+        <h2>Upload MRI Image</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <br><br>
+            <button type="submit">Upload & Predict</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h3>Prediction Result</h3>
+
+            <p><b>Result:</b> {{ result }}</p>
+            <p><b>Confidence:</b> {{ confidence }}%</p>
+
+            {% if image %}
+                <img src="{{ image }}" width="200">
+            {% endif %}
+
+            <br><br>
+            <button onclick="downloadPDF()">Download Report (PDF)</button>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- PDF SCRIPT -->
+    <script>
+        function downloadPDF() {
+            var element = document.getElementById('report');
+            html2pdf().from(element).save("Alzheimer_Report.pdf");
+        }
+    </script>
+
+</body>
+</html>

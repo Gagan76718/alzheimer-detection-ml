@@ -1,0 +1,4 @@
+dataset/
+*.pkl
+*.db
+__pycache__/
