@@ -1,100 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI';
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
 
-.container {
-    display: flex;
-    width: 800px;
-    height: 450px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-}
+        .login-box {
+            width: 380px;
+            padding: 40px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            color: white;
+        }
 
-.left {
-    width: 50%;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
 
-.right {
-    width: 50%;
-    padding: 40px;
-}
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+        button:hover {
+            background: #0056b3;
+        }
 
-button {
-    width: 100%;
-    padding: 12px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #5a67d8;
-}
-
-.error {
-    color: red;
-    text-align: center;
-}
-</style>
+        a {
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-
-<div class="left">
-    <div>
-        <h1>🧠 Alzheimer AI</h1>
-        <p>Secure Medical Imaging System</p>
-    </div>
-</div>
-
-<div class="right">
-    <h2>Login</h2>
-
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
+<div class="login-box">
+    <h2> Alzheimer Detection</h2>
 
     <form method="POST">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
-        <button>Login</button>
+
+        <button type="submit">Login</button>
     </form>
 
-    <p>Don't have account? <a href="/signup">Signup</a></p>
-</div>
-
+    <p>New user? <a href="/signup">Signup</a></p>
 </div>
 
 </body>

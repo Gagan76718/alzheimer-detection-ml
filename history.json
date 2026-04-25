@@ -1,0 +1,14 @@
+[
+    {
+        "user": "gagan",
+        "image": "static/uploads\\MRI-VMD-00009.jpg",
+        "result": "VeryMildDemented",
+        "confidence": 99.98
+    },
+    {
+        "user": "gagan",
+        "image": "static/uploads\\MRI-VMD-00009.jpg",
+        "result": "VeryMildDemented",
+        "confidence": 99.98
+    }
+]

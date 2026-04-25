@@ -1,13 +1,5 @@
 {
-    "admin": {
-        "password": "1234",
-        "role": "admin"
-    },
     "gagan": {
-        "password": "1111",
-        "role": "user"
-    },
-    "kkkk": {
-        "password": "7777"
+        "password": "1111"
     }
 }

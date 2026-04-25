@@ -1,4 +1,6 @@
 dataset/
+*.pth
 *.pkl
-*.db
 __pycache__/
+*.db
+static/uploads/

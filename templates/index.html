@@ -1,108 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Alzheimer Dashboard</title>
+    <title>Alzheimer Detection</title>
+
     <style>
         body {
-            font-family: Arial;
             margin: 0;
-            background: linear-gradient(135deg, #5f6dfd, #9b59b6);
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
+        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
-            padding: 15px 30px;
-            background: rgba(0,0,0,0.2);
+            padding: 15px 40px;
+            background: rgba(0,0,0,0.3);
         }
 
         .navbar a {
             color: white;
-            margin-left: 15px;
+            margin-left: 20px;
             text-decoration: none;
-            font-weight: bold;
         }
 
+        /* MAIN CARD */
         .container {
-            width: 60%;
-            margin: 50px auto;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
             background: rgba(255,255,255,0.1);
-            padding: 30px;
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             text-align: center;
         }
 
+        input[type=file] {
+            padding: 10px;
+            margin: 15px 0;
+        }
+
         button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+            padding: 12px 30px;
             background: #00c6ff;
+            border: none;
+            border-radius: 8px;
             color: white;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        .result-box {
+        button:hover {
+            background: #0072ff;
+        }
+
+        img {
             margin-top: 20px;
-            background: rgba(0,0,0,0.2);
-            padding: 15px;
+            width: 250px;
             border-radius: 10px;
         }
-    </style>
 
-    <!-- PDF Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <div><b>🧠 Alzheimer Detection</b></div>
-
-        <div>
-            Logged in as: <b>{{ session['user'] }}</b>
-            <a href="/history">History</a>
-            <a href="/logout">Logout</a>
-        </div>
+<!-- NAVBAR -->
+<div class="navbar">
+    <h3> Alzheimer Detection</h3>
+    <div>
+        <a href="/">Home</a>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
     </div>
+</div>
 
-    <!-- MAIN CONTENT -->
-    <div class="container" id="report">
+<!-- MAIN -->
+<div class="container">
 
-        <h2>Upload MRI Image</h2>
+    <h2>Upload MRI Image</h2>
 
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <br><br>
-            <button type="submit">Upload & Predict</button>
-        </form>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required><br>
+        <button type="submit">Predict</button>
+    </form>
 
-        {% if result %}
-        <div class="result-box">
-            <h3>Prediction Result</h3>
-
+    {% if result %}
+        <div class="result">
             <p><b>Result:</b> {{ result }}</p>
             <p><b>Confidence:</b> {{ confidence }}%</p>
-
-            {% if image %}
-                <img src="{{ image }}" width="200">
-            {% endif %}
-
-            <br><br>
-            <button onclick="downloadPDF()">Download Report (PDF)</button>
         </div>
-        {% endif %}
 
-    </div>
+        <img src="{{ image_path }}">
+    {% endif %}
 
-    <!-- PDF SCRIPT -->
-    <script>
-        function downloadPDF() {
-            var element = document.getElementById('report');
-            html2pdf().from(element).save("Alzheimer_Report.pdf");
-        }
-    </script>
+</div>
 
 </body>
 </html>
